@@ -70,7 +70,7 @@ new class extends Component {
                             <p class="text-xs">Recipient: <span class="font-semibold">{{ $note->recipient }}</span></p>
                             <div>
                                 <x-button.circle icon="eye"
-                                    href="#"></x-button.circle>
+                                    href="{{ route('notes.view', $note) }}"></x-button.circle>
                                 <x-button.circle icon="trash"
                                     wire:click="delete('{{$note->id}}')"></x-button.circle>
                             </div>
