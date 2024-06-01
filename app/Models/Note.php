@@ -38,4 +38,9 @@ class Note extends Model
         return $user->notes()->where('is_published', true)->get();
     }
 
+    public function recipient()
+    {
+        return $this->belongsTo(User::class, 'recipient');
+    }
+
 }

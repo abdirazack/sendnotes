@@ -189,7 +189,7 @@ return [
         ],
         'modal' => [
             'class' => Components\Modal::class,
-            'alias' => 'modal',
+            'alias' => 'w-modal',
         ],
         'modal.card' => [
             'class' => Components\ModalCard::class,
