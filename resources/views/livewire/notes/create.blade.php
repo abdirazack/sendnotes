@@ -42,7 +42,16 @@ new class extends Component {
         <x-textarea wire:model="body" label="Your Note" placeholder="Share all your thoughts with your friend." />
         <x-input icon="user" wire:model="recipient" label="Recipient" placeholder="yourfriend@email.com"
             type="email" />
-        <x-input icon="calendar" wire:model="send_date" type="date" label="Send Date" />
+            <x-datetime-picker
+            id="min-max-dates-input"
+            without-timezone
+            label="Appointment Date"
+            placeholder="Appointment Date"
+            wire:model.live="send_date"
+            :min="now()"
+
+        />
+        {{-- <x-input :min="now()" icon="calendar" wire:model="send_date" type="date" label="Send Date" /> --}}
         <div class="pt-4">
             <x-button type="submit" primary right-icon="calendar" spinner>Schedule Note</x-button>
         </div>
