@@ -24,7 +24,6 @@ class Note extends Model
     ];
 
     protected $casts = [
-        'send_date' => 'date',
         'is_published' => 'boolean',
     ];
 
