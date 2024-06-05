@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 
 class SendNoteEmail implements ShouldQueue
 {
@@ -30,11 +31,17 @@ class SendNoteEmail implements ShouldQueue
         $noteUrl = config('app.url').'/notes/'.$this->note->id;
 
         $emailContent = "Hello, you've received a new note. View it here: {$noteUrl}";
+        Log::info('Sending email', [
+            'from' => 'sendnotes@zimfy.co',
+            'to' => $this->note->recipient,
+            'subject' => 'You have a new note from ' . $this->note->user->name,
+            'body' => $emailContent,
+        ]);
 
-        Mail::raw($emailContent, function ($message) {
-            $message->from('sendnotes@zimfy.co', 'The Notes App')
-                ->to($this->note->recipient)
-                ->subject('You have a new note from '.$this->note->user->name);
-        });
+        // Mail::raw($emailContent, function ($message) {
+        //     $message->from('sendnotes@zimfy.co', 'The Notes App')
+        //         ->to($this->note->recipient)
+        //         ->subject('You have a new note from '.$this->note->user->name);
+        // });
     }
 }
